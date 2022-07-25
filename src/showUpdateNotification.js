@@ -18,7 +18,9 @@ const showUpdateAvailableNotification = registration => {
             registration.waiting.postMessage({ type: 'SKIP_WAITING' })
           }
 
-          window.location.reload()
+          setTimeout(() => {
+            window.location.reload()
+          }, 200)
         }}
       >
         Refresh
