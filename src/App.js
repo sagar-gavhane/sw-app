@@ -6,13 +6,16 @@ import showUpdateAvailableNotification from './showUpdateNotification'
 
 function App() {
   const onVisibilityChange = () => {
+    console.log('onVisibilityChange func called')
     if (
       document.visibilityState === 'visible' &&
       'serviceWorker' in navigator
     ) {
       navigator.serviceWorker.getRegistration().then(registration => {
+        console.log('registration found', registration)
         registration?.update()
         registration?.addEventListener('updatefound', () => {
+          console.log('updatefound event')
           console.log('[registration]', registration)
           showUpdateAvailableNotification(registration)
         })

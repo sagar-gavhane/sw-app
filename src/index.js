@@ -19,15 +19,23 @@ root.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register({
   onUpdate: registration => {
+    console.log('onUpdate has been called')
     const waitingServiceWorker = registration.waiting
 
     if (waitingServiceWorker) {
+      console.log('add event listener on statechange')
       waitingServiceWorker.addEventListener('statechange', event => {
+        console.log(
+          'check event.target.state === activated',
+          event.target.state
+        )
         if (event.target.state === 'activated') {
           console.log('[registration]', registration)
           showUpdateAvailableNotification(registration)
         }
       })
+
+      console.log('post message SKIP_WAITING')
       waitingServiceWorker.postMessage({ type: 'SKIP_WAITING' })
     }
   },

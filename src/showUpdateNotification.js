@@ -12,13 +12,17 @@ const showUpdateAvailableNotification = registration => {
         type="primary"
         size="small"
         onClick={() => {
-          console.log('[registration.waiting]', registration.waiting)
+          console.log('Refresh button clicked')
+
+          console.log('registration.waiting is', registration.waiting)
 
           if (registration.waiting) {
+            console.log('again, post message SKIP_WAITING')
             registration.waiting.postMessage({ type: 'SKIP_WAITING' })
           }
 
           setTimeout(() => {
+            console.log('reload webpage after 1000 msec')
             window.location.reload()
           }, 1000)
         }}
