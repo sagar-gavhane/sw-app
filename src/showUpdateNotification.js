@@ -20,7 +20,7 @@ const showUpdateAvailableNotification = registration => {
 
           setTimeout(() => {
             window.location.reload()
-          }, 200)
+          }, 1000)
         }}
       >
         Refresh
