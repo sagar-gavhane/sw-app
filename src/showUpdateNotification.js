@@ -1,22 +1,22 @@
-import { notification, Button } from "antd";
+import { notification, Button } from 'antd'
 
-const key = "update-available-notification";
+const key = 'update-available-notification'
 
-const showUpdateAvailableNotification = (registration) => {
+const showUpdateAvailableNotification = registration => {
   notification.open({
-    message: "New version available",
+    message: 'New version available',
     description:
-      "There is a new version of the app ready. Please reload to update.",
+      'There is a new version of the app ready. Please reload to update.',
     btn: (
       <Button
         type="primary"
         size="small"
         onClick={() => {
           if (registration.waiting) {
-            registration.waiting.postMessage({ type: "SKIP_WAITING" });
+            registration.waiting.postMessage({ type: 'SKIP_WAITING' })
           }
 
-          window.location.reload();
+          // window.location.reload();
         }}
       >
         Refresh
@@ -24,8 +24,8 @@ const showUpdateAvailableNotification = (registration) => {
     ),
     key,
     onClose: () => notification.close(key),
-    placement: "bottomRight",
-  });
-};
+    placement: 'bottomRight',
+  })
+}
 
-export default showUpdateAvailableNotification;
+export default showUpdateAvailableNotification
