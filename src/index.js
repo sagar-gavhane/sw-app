@@ -1,38 +1,39 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
-import "antd/dist/antd.css";
-import showUpdateAvailableNotification from "./showUpdateNotification";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import App from './App'
+import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import reportWebVitals from './reportWebVitals'
+import 'antd/dist/antd.css'
+import showUpdateAvailableNotification from './showUpdateNotification'
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
-);
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.register({
-  onUpdate: (registration) => {
-    const waitingServiceWorker = registration.waiting;
+  onUpdate: registration => {
+    const waitingServiceWorker = registration.waiting
 
     if (waitingServiceWorker) {
-      waitingServiceWorker.addEventListener("statechange", (event) => {
-        if (event.target.state === "activated") {
-          showUpdateAvailableNotification(registration);
+      waitingServiceWorker.addEventListener('statechange', event => {
+        if (event.target.state === 'activated') {
+          console.log('[registration]', registration)
+          showUpdateAvailableNotification(registration)
         }
-      });
-      waitingServiceWorker.postMessage({ type: "SKIP_WAITING" });
+      })
+      waitingServiceWorker.postMessage({ type: 'SKIP_WAITING' })
     }
   },
-});
+})
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

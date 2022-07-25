@@ -12,6 +12,8 @@ const showUpdateAvailableNotification = registration => {
         type="primary"
         size="small"
         onClick={() => {
+          console.log('[registration.waiting]', registration.waiting)
+
           if (registration.waiting) {
             registration.waiting.postMessage({ type: 'SKIP_WAITING' })
           }

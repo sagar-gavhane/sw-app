@@ -13,6 +13,7 @@ function App() {
       navigator.serviceWorker.getRegistration().then(registration => {
         registration?.update()
         registration?.addEventListener('updatefound', () => {
+          console.log('[registration]', registration)
           showUpdateAvailableNotification(registration)
         })
       })
